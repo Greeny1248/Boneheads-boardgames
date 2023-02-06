@@ -2,4 +2,18 @@
   text-align: center;
 }
 
+.listItem{
+  background-color: rgb(216, 212, 207);
+  border-radius: 10px;
+  list-style: none;
+  padding: 2%;
+  margin: 2%;
+  margin-left: 20%;
+  margin-right: 20%;
+}
 
+img {
+  max-width: 100%;
+  height: auto;
+  width: auto\9; 
+}
