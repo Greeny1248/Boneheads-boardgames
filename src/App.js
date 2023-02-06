@@ -1,12 +1,15 @@
-import logo from './logo.svg';
+import { Routes, Route } from 'react-router-dom';
 import './App.css';
+import Header from './components/header';
+import { Reviews } from './components/reviews';
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-  
-      </header>
+<Header />
+<Routes>
+        <Route path='/' element={<Reviews />}></Route>
+      </Routes>
     </div>
   );
 }
