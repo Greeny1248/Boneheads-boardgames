@@ -1,4 +1,5 @@
-import { getReviews, getSingleReview } from "../api";
+
+import { getReviews,getSingleReview } from "../api";
 import { useState } from "react";
 import { useEffect } from "react";
 import { Link} from "react-router-dom";
@@ -35,11 +36,13 @@ return(
                 <h3>{review.title} </h3><br></br>             
                 <img src={review.review_img_url} alt={`${review.title}`} />
               <br></br>
+
                 <strong> Posted at {review.created_at} by {review.owner} </strong>
               <br></br>
               Category:{review.category}
               <br></br>
               {review.comment_count} Comments
+              </Link>
               <br></br>
               Votes:{review.votes}
             </li>

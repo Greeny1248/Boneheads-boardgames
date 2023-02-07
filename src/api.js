@@ -11,6 +11,7 @@ export const getReviews = () => {
 };
 
 export const getSingleReview = (review_id) => {
+
     return instance.get(`/reviews/${review_id}`).then((res)=>{
      
         return res.data.review[0];
@@ -30,4 +31,5 @@ export const patchReviewVote = (review_id, inc_votes) => {
         return res.data.review;
       });
   };
+
 
