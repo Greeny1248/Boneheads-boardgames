@@ -17,3 +17,14 @@ img {
   height: auto;
   width: auto\9; 
 }
+
+.commentli{
+  background-color: rgb(216, 212, 207);
+  border-radius: 5px;
+  list-style: none;
+  padding: 2%;
+  margin: 2%;
+  margin-left: 20%;
+  margin-right: 20%;
+}
+
