@@ -22,7 +22,7 @@ return(
                 <h3>{review.title} </h3><br></br>
               <img src={review.review_img_url} alt={`${review.title}`} />
               <br></br>
-                  Posted at {review.created_at} by {review.owner} 
+                 <strong> Posted at {review.created_at} by {review.owner} </strong>
               <br></br>
               Category:{review.category}
               <br></br>

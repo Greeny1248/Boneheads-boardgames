@@ -2,6 +2,8 @@
 import { getSingleReview } from "../api";
 import { useState,useEffect  } from "react";
 import {useParams} from 'react-router-dom';
+import {Comments} from "./comments"
+import { VoteButton } from "./votes";
 
 
 export const SingleReview = () =>{
@@ -17,11 +19,12 @@ setSingleReview(review);
     }, [review_id]);
 
 return (
-    <section className="listItem">
+   <main>
+   <section className="listItem">
         <h3>{singleReview.title} </h3><br></br>
               <img src={singleReview.review_img_url} alt={`${singleReview.title}`} />
               <br></br>
-                  Posted at {singleReview.created_at} by {singleReview.owner} 
+                 <strong>Posted at {singleReview.created_at} by {singleReview.owner} </strong> 
               <br></br>
               Category:{singleReview.category}
               <br></br>
@@ -29,6 +32,10 @@ return (
               <br></br>
               {singleReview.comment_count} Comments
               <br></br> 
+              {singleReview.votes}
+              <VoteButton/>
     </section>
+    <Comments singleReview={singleReview} />
+   </main>
 )
 }
