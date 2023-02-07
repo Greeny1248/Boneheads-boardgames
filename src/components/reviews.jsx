@@ -1,7 +1,7 @@
-import { getReviews } from "../api";
+import { getReviews,getSingleReview } from "../api";
 import { useState } from "react";
 import { useEffect } from "react";
-
+import { Link} from "react-router-dom";
 
 export const Reviews = ()=>{
 
@@ -28,7 +28,10 @@ return(
               <br></br>
              {review.review_body}
               <br></br>
+              <Link
+              to={`/reviews/${review.review_id}`}>
               {review.comment_count} Comments
+              </Link>
               <br></br>
             </li>
 )
