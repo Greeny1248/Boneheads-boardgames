@@ -24,6 +24,7 @@ export const getSingleReview = (review_id) => {
   });
 };
 
+
 export const getCommentsByReviewId = (review_id) => {
   return instance.get(`/reviews/${review_id}/comments`).then((res) => {
     return res.data.comments;
@@ -36,6 +37,7 @@ export const patchReviewVote = (review_id, inc_votes) => {
   });
 };
 
+
 export const postComment = (review_id, body) => {
   const postBody = {
     username: "tickle122",
@@ -47,3 +49,4 @@ export const postComment = (review_id, body) => {
       return res.data.newComment;
     });
 };
+

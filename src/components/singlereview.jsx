@@ -6,10 +6,12 @@ import {Comments} from "./comments"
 import { Link } from "react-router-dom";
 
 
+
 export const SingleReview = () =>{
     
     const [singleReview, setSingleReview] = useState({})
     const {review_id} = useParams();
+
     const [votes, setVotes] = useState(singleReview.votes);
     const [isClicked, setIsClicked] = useState(false);
     const [loading, setLoading]= useState(true)
