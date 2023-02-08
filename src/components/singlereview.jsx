@@ -69,7 +69,9 @@ return (
               <br></br>
                {(err? <p>Network Error... Your vote may not have updated</p> : null)}
      
-              <button onClick={ handleClick }><span>{ `Vote | ${votes}` }</span></button> 
+              <button onClick={ handleClick }><span>{ `UpVote` }</span></button> 
+              <br></br> 
+              <strong>UpVotes: {votes}</strong>
               <br></br> 
               {singleReview.comment_count} Comments
     </section>
