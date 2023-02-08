@@ -1,15 +1,15 @@
 .App {
   text-align: center;
 }
-
+Head
 .listItem{
-  background-color: rgb(216, 212, 207);
+  background-color: rgb(197, 196, 195);
   border-radius: 10px;
   list-style: none;
   padding: 2%;
   margin: 2%;
-  margin-left: 20%;
-  margin-right: 20%;
+  margin-left: 10%;
+  margin-right: 10%;
 }
 
 img {
@@ -24,8 +24,8 @@ img {
   list-style: none;
   padding: 2%;
   margin: 2%;
-  margin-left: 20%;
-  margin-right: 20%;
+  margin-left: 10%;
+  margin-right: 10%;
 }
 .name{ width: 50%;
   border-radius: 5px;
@@ -34,14 +34,14 @@ img {
 .commentBody{
   margin-top: 10px;
   margin-bottom: 10px;
-  width: 85%;
+  width: 80%;
   height: 100px;
   border-radius: 5px;
 }
 
 .comment{
-  margin-left: 20%;
-  margin-right: 20%;
+  margin-left: 10%;
+  margin-right: 10%;
   padding-top: 2%;
   padding-bottom: 2%;
   background-color: rgb(216, 212, 207);

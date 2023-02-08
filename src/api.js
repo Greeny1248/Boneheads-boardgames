@@ -11,11 +11,9 @@ export const getReviews = () => {
 };
 
 export const getQueriedReviews = (sortByQuery) => {
-  return instance
-    .get(`/reviews/?category=${sortByQuery}`)
-    .then((response) => {
-      return response.data.reviews;
-    });
+  return instance.get(`/reviews/?category=${sortByQuery}`).then((response) => {
+    return response.data.reviews;
+  });
 };
 
 export const getSingleReview = (review_id) => {
@@ -23,7 +21,6 @@ export const getSingleReview = (review_id) => {
     return res.data.review[0];
   });
 };
-
 
 export const getCommentsByReviewId = (review_id) => {
   return instance.get(`/reviews/${review_id}/comments`).then((res) => {
@@ -37,7 +34,6 @@ export const patchReviewVote = (review_id, inc_votes) => {
   });
 };
 
-
 export const postComment = (review_id, body) => {
   const postBody = {
     username: "tickle122",
@@ -50,3 +46,8 @@ export const postComment = (review_id, body) => {
     });
 };
 
+export const deleteComment = (comment_id) => {
+  return instance.delete(`/comments/${comment_id}`).then((res) => {
+    return res;
+  });
+};

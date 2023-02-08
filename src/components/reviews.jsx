@@ -1,79 +1,151 @@
-import { getReviews, getQueriedReviews} from "../api";
+import { getReviews, getQueriedReviews } from "../api";
 import { useState } from "react";
 import { useEffect } from "react";
-import { Link, useSearchParams} from "react-router-dom";
+import { Link, useSearchParams } from "react-router-dom";
 
-export const Reviews = ()=>{
+export const Reviews = () => {
+  const [reviews, setReviews] = useState([]);
+  const [loading, setLoading] = useState(true);
 
-    const [reviews,setReviews]=useState([])
-    const [loading, setLoading]= useState(true)
-    let [searchParams, setSearchParams] = useSearchParams()
-    const sortByQuery = searchParams.get("category_name")
-    const setChosenCategory = (category) =>{
-      const newParams = new URLSearchParams(searchParams)
-      newParams.set("category_name", category)
-      setSearchParams(newParams)
+  const [sortOption, setSortOption] = useState("Date");
+  const [sortDirection, setSortDirection] = useState("asc");
+
+  let [searchParams, setSearchParams] = useSearchParams();
+  const sortByQuery = searchParams.get("category_name");
+  const setChosenCategory = (category) => {
+    const newParams = new URLSearchParams(searchParams);
+    newParams.set("category_name", category);
+    setSearchParams(newParams);
+  };
+
+  useEffect(() => {
+    if (sortByQuery) {
+      getQueriedReviews(sortByQuery).then((reviews) => {
+        setReviews(reviews);
+      });
     }
+  }, [sortByQuery, setReviews]);
 
-    useEffect(()=>{
-        if (sortByQuery){
-          getQueriedReviews(sortByQuery).then((reviews)=>{
-          setReviews(reviews)})
-        }
-      }, [sortByQuery, setReviews])
+  useEffect(() => {
+    getReviews().then((reviews) => {
+      setReviews(reviews);
+      setLoading(false);
+    });
+  }, []);
 
-    useEffect(() => {
-        getReviews().then((reviews) => {
-            setReviews(reviews);
-            setLoading(false)
-        });
-    }, []);
+  const sortReviews = (reviews, sortOption, sortDirection) => {
+    if (sortOption === "Date") {
+      if (sortDirection === "asc") {
+        return reviews.sort(
+          (a, b) => new Date(a.created_at) - new Date(b.created_at)
+        );
+      } else {
+        return reviews.sort(
+          (a, b) => new Date(b.created_at) - new Date(a.created_at)
+        );
+      }
+    } else if (sortOption === "Comments") {
+      if (sortDirection === "asc") {
+        return reviews.sort((a, b) => a.comment_count - b.comment_count);
+      } else {
+        return reviews.sort((a, b) => b.comment_count - a.comment_count);
+      }
+    } else if (sortOption === "Votes") {
+      if (sortDirection === "asc") {
+        return reviews.sort((a, b) => a.votes - b.votes);
+      } else {
+        return reviews.sort((a, b) => b.votes - a.votes);
+      }
+    }
+  };
 
-
-if (loading){
-return (<section>
-    <h2>Loading... </h2>
-    <img src="https://media0.giphy.com/media/3oEjI6SIIHBdRxXI40/giphy.gif?cid=ecf05e4747e7sqmacwz8lz2ms1i1icw1hv2744tybd05g959&rid=giphy.gif&ct=g" alt="loading"/>
-    </section>)
-}
-
-return (
-    <section>
-        <h2>{sortByQuery} </h2>
-        <section>       
-        <label htmlFor="category">Category Filter:</label>
-        <button onClick={()=>setChosenCategory("hidden-roles")}>hidden-roles</button>
-        <button onClick={()=>setChosenCategory("dexterity")}>dexterity</button>
-        <button onClick={()=>setChosenCategory("strategy")}>strategy</button>
-        <button onClick={()=>setChosenCategory("deck-building")}>deck-building</button>
-        <button onClick={()=>setChosenCategory("engine-building")}>engine-building</button>
-        <button onClick={()=>setChosenCategory("push-your-luck")}>push-your-luck</button>
-        <button onClick={()=>setChosenCategory("roll-and-write")}>roll-and-write</button>
-
-        <Link to="/"><button onClick={()=>getReviews().then((reviews)=>{setReviews(reviews)})}>Clear Filter</button></Link>
+  if (loading) {
+    return (
+      <section>
+        <h2>Loading... </h2>
+        <img
+          src="https://media0.giphy.com/media/3oEjI6SIIHBdRxXI40/giphy.gif?cid=ecf05e4747e7sqmacwz8lz2ms1i1icw1hv2744tybd05g959&rid=giphy.gif&ct=g"
+          alt="loading"
+        />
       </section>
-        <ul id="reviewList">
-        {reviews.map((review)=>{
-return(
-    <section key={review.review_id}>
-            <Link to={`/reviews/${review.review_id}`}  >
-            <li className="listItem" >
-                <h3>{review.title} </h3><br></br>             
-                <img src={review.review_img_url} alt={`${review.title}`} />
-              <br></br>
+    );
+  }
 
-                <strong> Posted at {review.created_at} by {review.owner} </strong>
-              <br></br>
-              Category:{review.category}
-              <br></br>
-              {review.comment_count} Comments
-             
-              <br></br>
-              Votes:{review.votes}
-            </li>
+  return (
+    <section>
+      <h2>{sortByQuery} </h2>
+      <section>
+        <label htmlFor="category">Category Filter:</label>
+        <button onClick={() => setChosenCategory("hidden-roles")}>
+          hidden-roles
+        </button>
+        <button onClick={() => setChosenCategory("dexterity")}>
+          dexterity
+        </button>
+        <button onClick={() => setChosenCategory("strategy")}>strategy</button>
+        <button onClick={() => setChosenCategory("deck-building")}>
+          deck-building
+        </button>
+        <button onClick={() => setChosenCategory("engine-building")}>
+          engine-building
+        </button>
+        <button onClick={() => setChosenCategory("push-your-luck")}>
+          push-your-luck
+        </button>
+        <button onClick={() => setChosenCategory("roll-and-write")}>
+          roll-and-write
+        </button>
+        <Link to="/">
+          <button
+            onClick={() =>
+              getReviews().then((reviews) => {
+                setReviews(reviews);
+              })
+            }
+          >
+            Clear Filter
+          </button>
+        </Link>
+      </section>
+      <section id="sort">
+        <select
+          value={sortOption}
+          onChange={(e) => setSortOption(e.target.value)}
+        >
+          <option>Date</option>
+          <option>Comments</option>
+          <option>Votes</option>
+        </select>
+        <button onClick={() => setSortDirection("asc")}>Asc</button>
+        <button onClick={() => setSortDirection("desc")}>Desc</button>
+      </section>
+      <ul id="reviewList">
+        {sortReviews(reviews, sortOption, sortDirection).map((review) => {
+          return (
+            <section key={review.review_id}>
+              <Link to={`/reviews/${review.review_id}`}>
+                <li className="listItem">
+                  <h3>{review.title} </h3>
+                  <br></br>
+                  <img src={review.review_img_url} alt={`${review.title}`} />
+                  <br></br>
+                  <strong>
+                    {" "}
+                    Posted at {review.created_at} by {review.owner}{" "}
+                  </strong>
+                  <br></br>
+                  Category:{review.category}
+                  <br></br>
+                  {review.comment_count} Comments
+                  <br></br>
+                  Votes:{review.votes}
+                </li>
               </Link>
-        </section>
-)})};
-        </ul>
+            </section>
+          );
+        })}
+        ;
+      </ul>
     </section>
-)};
+  );
+};
