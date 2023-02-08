@@ -1,4 +1,4 @@
-import { getReviews, getSingleReview } from "../api";
+import { getReviews} from "../api";
 import { useState } from "react";
 import { useEffect } from "react";
 import { Link} from "react-router-dom";
@@ -29,9 +29,9 @@ return (
         <ul id="reviewList">
         {reviews.map((review)=>{
 return(
-              <Link to={`/reviews/${review.review_id}`}>
+              <Link to={`/reviews/${review.review_id}`}  key={review.review_id}>
         <section>
-            <li className="listItem" key={review.review_id}>
+            <li className="listItem" >
                 <h3>{review.title} </h3><br></br>             
                 <img src={review.review_img_url} alt={`${review.title}`} />
               <br></br>

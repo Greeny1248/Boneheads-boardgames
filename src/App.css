@@ -27,4 +27,24 @@ img {
   margin-left: 20%;
   margin-right: 20%;
 }
+.name{ width: 50%;
+  border-radius: 5px;
+
+}
+.commentBody{
+  margin-top: 10px;
+  margin-bottom: 10px;
+  width: 85%;
+  height: 100px;
+  border-radius: 5px;
+}
+
+.comment{
+  margin-left: 20%;
+  margin-right: 20%;
+  padding-top: 2%;
+  padding-bottom: 2%;
+  background-color: rgb(216, 212, 207);
+  border-radius: 5px;
+}
 

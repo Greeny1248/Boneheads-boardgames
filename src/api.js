@@ -1,6 +1,6 @@
 import axios from "axios";
 
-export const instance = axios.create({
+const instance = axios.create({
   baseURL: "https://backend-boardgame-server.onrender.com/api",
 });
 
@@ -11,23 +11,31 @@ export const getReviews = () => {
 };
 
 export const getSingleReview = (review_id) => {
-    return instance.get(`/reviews/${review_id}`).then((res)=>{
-     
-        return res.data.review[0];
-    })
-}
+  return instance.get(`/reviews/${review_id}`).then((res) => {
+    return res.data.review[0];
+  });
+};
 
 export const getCommentsByReviewId = (review_id) => {
-    return instance.get(`/reviews/${review_id}/comments`).then((res) => {
-      return res.data.comments;
-    })
-  }
+  return instance.get(`/reviews/${review_id}/comments`).then((res) => {
+    return res.data.comments;
+  });
+};
 
 export const patchReviewVote = (review_id, inc_votes) => {
-    return instance
-      .patch(`/reviews/${review_id}`, { inc_votes })
-      .then((res) => {
-        return res.data.review;
-      });
-  };
+  return instance.patch(`/reviews/${review_id}`, { inc_votes }).then((res) => {
+    return res.data.review;
+  });
+};
 
+export const postComment = (review_id, body) => {
+  const postBody = {
+    username: "tickle122",
+    body: body,
+  };
+  return instance
+    .post(`/reviews/${review_id}/comments`, postBody)
+    .then((res) => {
+      return res.data.newComment;
+    });
+};

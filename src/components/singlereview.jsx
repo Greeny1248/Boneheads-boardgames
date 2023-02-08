@@ -10,10 +10,10 @@ export const SingleReview = () =>{
     
     const [singleReview, setSingleReview] = useState({})
     const {review_id} = useParams();
-    const [votes, setVotes] = useState(0);
+    const [votes, setVotes] = useState(singleReview.votes);
     const [isClicked, setIsClicked] = useState(false);
     const [loading, setLoading]= useState(true)
-    
+    const [err, setErr] = useState(false);
     useEffect(() => {
         getSingleReview(review_id)
         .then((review) => {
@@ -30,23 +30,25 @@ export const SingleReview = () =>{
             </section>)
     }
     const handleClick = () => {
-        if (isClicked) {
-            patchReviewVote(review_id, -1)
-              .then(() => getSingleReview(review_id))
-              .then((review) => {
-                setSingleReview(review);
-                setVotes(review.votes);
-              });
-          } else {
-            patchReviewVote(review_id, 1)
-              .then(() => getSingleReview(review_id))
-              .then((review) => {
-                setSingleReview(review);
-                setVotes(review.votes);
-              });
-          }
-          setIsClicked(!isClicked);
-        };
+      setIsClicked(!isClicked);
+    
+      let voteChange = 1;
+      if (isClicked) {
+        voteChange = -1;
+      }
+    
+      setVotes((currentVotes) => { 
+        let upvote = currentVotes + voteChange
+      return upvote})
+    
+      patchReviewVote(review_id, voteChange)
+      .then(() =>{ 
+        setErr(false)
+     }).catch(()=>{
+        setErr(true)
+      }
+     )
+       } ;
     
 
 return (
@@ -63,7 +65,9 @@ return (
               <br></br>
              {singleReview.review_body}
               <br></br>
-              <button onClick={ handleClick }><span>{ `Vote | ${singleReview.votes}` }</span></button> 
+               {(err? <p>Network Error... Your vote may not have updated</p> : null)}
+     
+              <button onClick={ handleClick }><span>{ `Vote | ${votes}` }</span></button> 
               <br></br> 
               {singleReview.comment_count} Comments
     </section>
