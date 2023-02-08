@@ -56,8 +56,8 @@ return (
         {reviews.map((review)=>{
 return(
     <section key={review.review_id}>
-            <li className="listItem" >
             <Link to={`/reviews/${review.review_id}`}  >
+            <li className="listItem" >
                 <h3>{review.title} </h3><br></br>             
                 <img src={review.review_img_url} alt={`${review.title}`} />
               <br></br>
@@ -68,8 +68,8 @@ return(
               {review.comment_count} Comments
               <br></br>
               Votes:{review.votes}
-              </Link>
             </li>
+            </Link>
         </section>
 )})};
         </ul>
