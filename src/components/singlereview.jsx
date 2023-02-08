@@ -14,6 +14,7 @@ export const SingleReview = () =>{
 
     const [votes, setVotes] = useState(singleReview.votes);
     const [isClicked, setIsClicked] = useState(false);
+    const [message, setMessage] = useState("")
     const [loading, setLoading]= useState(true)
     const [err, setErr] = useState(false);
     useEffect(() => {
@@ -33,13 +34,15 @@ export const SingleReview = () =>{
     }
     const handleClick = () => {
       setIsClicked(!isClicked);
-    
       let voteChange = 1;
+      setMessage("You Voted!")
       if (isClicked) {
+        setMessage("")
         voteChange = -1;
       }
-    
+      
       setVotes((currentVotes) => { 
+        
         let upvote = currentVotes + voteChange
       return upvote})
     
@@ -69,6 +72,7 @@ return (
               <br></br>
                {(err? <p>Network Error... Your vote may not have updated</p> : null)}
      
+              <p>{message}</p>
               <button onClick={ handleClick }><span>{ `UpVote` }</span></button> 
               <br></br> 
               <strong>UpVotes: {votes}</strong>

@@ -6,12 +6,13 @@ import AddComment from "./addcomment";
 
 export const Comments = () => {
   const [comments, setComments] = useState([]);
-  const [loading, setLoading]= useState(true)
+  const [loading, setLoading]= useState(false)
   const { review_id } = useParams();
   
   
   useEffect(() => {
     getCommentsByReviewId(review_id).then((commentsApi) => {
+      setLoading(true)
         setComments(commentsApi);
         setLoading(false)
       }).catch((err)=>{
@@ -24,16 +25,16 @@ export const Comments = () => {
           <h2>Loading... </h2>
           <img src="https://media0.giphy.com/media/3oEjI6SIIHBdRxXI40/giphy.gif?cid=ecf05e4747e7sqmacwz8lz2ms1i1icw1hv2744tybd05g959&rid=giphy.gif&ct=g" alt="loading"/>
           </section>)
+      } 
+      if (comments.length===0){
+        return ( <section>
+  
+          <h2> Be the first to comment!</h2>
+          <AddComment review_id={review_id} setComments={setComments}/>
+        </section>
+        )
       }
       
-    if (comments.length===0){
-      return ( <section>
-
-        <h2> Be the first to comment!</h2>
-        <AddComment review_id={review_id} setComments={setComments}/>
-      </section>
-      )
-    }
     return (
       <section>
 <AddComment review_id={review_id} setComments={setComments}/>
