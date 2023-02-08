@@ -1,12 +1,26 @@
-import { getReviews} from "../api";
+import { getReviews, getQueriedReviews} from "../api";
 import { useState } from "react";
 import { useEffect } from "react";
-import { Link} from "react-router-dom";
+import { Link, useSearchParams} from "react-router-dom";
 
 export const Reviews = ()=>{
 
     const [reviews,setReviews]=useState([])
     const [loading, setLoading]= useState(true)
+    let [searchParams, setSearchParams] = useSearchParams()
+    const sortByQuery = searchParams.get("category_name")
+    const setChosenCategory = (category) =>{
+      const newParams = new URLSearchParams(searchParams)
+      newParams.set("category_name", category)
+      setSearchParams(newParams)
+    }
+
+    useEffect(()=>{
+        if (sortByQuery){
+          getQueriedReviews(sortByQuery).then((reviews)=>{
+          setReviews(reviews)})
+        }
+      }, [sortByQuery, setReviews])
 
     useEffect(() => {
         getReviews().then((reviews) => {
@@ -25,13 +39,25 @@ return (<section>
 
 return (
     <section>
-        <h2>$category placeholder</h2>
+        <h2>{sortByQuery} </h2>
+        <section>       
+        <label htmlFor="category">Category Filter:</label>
+        <button onClick={()=>setChosenCategory("hidden-roles")}>hidden-roles</button>
+        <button onClick={()=>setChosenCategory("dexterity")}>dexterity</button>
+        <button onClick={()=>setChosenCategory("strategy")}>strategy</button>
+        <button onClick={()=>setChosenCategory("deck-building")}>deck-building</button>
+        <button onClick={()=>setChosenCategory("engine-building")}>engine-building</button>
+        <button onClick={()=>setChosenCategory("push-your-luck")}>push-your-luck</button>
+        <button onClick={()=>setChosenCategory("roll-and-write")}>roll-and-write</button>
+
+        <Link to="/"><button onClick={()=>getReviews().then((reviews)=>{setReviews(reviews)})}>Clear Filter</button></Link>
+      </section>
         <ul id="reviewList">
         {reviews.map((review)=>{
 return(
-              <Link to={`/reviews/${review.review_id}`}  key={review.review_id}>
-        <section>
+    <section key={review.review_id}>
             <li className="listItem" >
+            <Link to={`/reviews/${review.review_id}`}  >
                 <h3>{review.title} </h3><br></br>             
                 <img src={review.review_img_url} alt={`${review.title}`} />
               <br></br>
@@ -42,9 +68,9 @@ return(
               {review.comment_count} Comments
               <br></br>
               Votes:{review.votes}
+              </Link>
             </li>
         </section>
-              </Link>
 )})};
         </ul>
     </section>

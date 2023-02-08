@@ -10,6 +10,14 @@ export const getReviews = () => {
   });
 };
 
+export const getQueriedReviews = (sortByQuery) => {
+  return instance
+    .get(`/reviews/?category=${sortByQuery}`)
+    .then((response) => {
+      return response.data.reviews;
+    });
+};
+
 export const getSingleReview = (review_id) => {
   return instance.get(`/reviews/${review_id}`).then((res) => {
     return res.data.review[0];
