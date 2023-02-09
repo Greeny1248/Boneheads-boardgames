@@ -6,11 +6,11 @@ import { Link, useSearchParams } from "react-router-dom";
 export const Reviews = () => {
   const [reviews, setReviews] = useState([]);
   const [loading, setLoading] = useState(true);
-
   const [sortOption, setSortOption] = useState("Date");
   const [sortDirection, setSortDirection] = useState("asc");
-
+  const [err, setErr] = useState(false);
   let [searchParams, setSearchParams] = useSearchParams();
+  
   const sortByQuery = searchParams.get("category_name");
   const setChosenCategory = (category) => {
     const newParams = new URLSearchParams(searchParams);
@@ -20,17 +20,29 @@ export const Reviews = () => {
 
   useEffect(() => {
     if (sortByQuery) {
-      getQueriedReviews(sortByQuery).then((reviews) => {
-        setReviews(reviews);
-      });
+      getQueriedReviews(sortByQuery)
+        .then((reviews) => {
+          setReviews(reviews);
+        })
+        .catch((error) => {
+          console.log(error);
+          setErr(error);
+          setLoading(false);
+        });
     }
   }, [sortByQuery, setReviews]);
 
   useEffect(() => {
-    getReviews().then((reviews) => {
-      setReviews(reviews);
-      setLoading(false);
-    });
+    getReviews()
+      .then((reviews) => {
+        setReviews(reviews);
+        setLoading(false);
+      })
+      .catch((error) => {
+        console.log(error);
+        setErr(error);
+        setLoading(false);
+      });
   }, []);
 
   const sortReviews = (reviews, sortOption, sortDirection) => {
@@ -67,6 +79,14 @@ export const Reviews = () => {
           src="https://media0.giphy.com/media/3oEjI6SIIHBdRxXI40/giphy.gif?cid=ecf05e4747e7sqmacwz8lz2ms1i1icw1hv2744tybd05g959&rid=giphy.gif&ct=g"
           alt="loading"
         />
+      </section>
+    );
+  }
+
+  if (err) {
+    return (
+      <section>
+        <p>Oops, something went wrong ☹</p>
       </section>
     );
   }

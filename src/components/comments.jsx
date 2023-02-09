@@ -5,27 +5,26 @@ import AddComment from "./addcomment";
 import { UserContext } from "../contexts/userContext";
 import { useContext } from "react";
 
-
 export const Comments = () => {
   const [comments, setComments] = useState([]);
   const [loading, setLoading] = useState(false);
-  
-  
+  const [err, setErr] = useState(false);
   const userValue = useContext(UserContext);
-  console.log(userValue.loggedInUsername.name)
   const { review_id } = useParams();
 
-  
-
-
   useEffect(() => {
+    setErr(null);
+    setLoading(true);
     getCommentsByReviewId(review_id)
       .then((commentsApi) => {
-        setLoading(true);
         setComments(commentsApi);
         setLoading(false);
       })
-      .catch((err) => {});
+      .catch((error) => {
+        console.log(error);
+        setErr(error);
+        setLoading(false);
+      });
   }, [review_id]);
   const handleDeleteComment = (comment_id) => {
     deleteComment(comment_id)
@@ -34,7 +33,11 @@ export const Comments = () => {
           prevComments.filter((comment) => comment.comment_id !== comment_id)
         );
       })
-      .catch((err) => {});
+      .catch((error) => {
+        console.log(error);
+        setErr(error);
+        setLoading(false);
+      });
   };
 
   if (loading) {
@@ -57,6 +60,14 @@ export const Comments = () => {
     );
   }
 
+  if (err) {
+    return (
+      <section>
+        <p>Oops, something went wrong ☹</p>
+      </section>
+    );
+  }
+
   return (
     <section>
       <AddComment review_id={review_id} setComments={setComments} />
@@ -71,7 +82,6 @@ export const Comments = () => {
               {comment.body}
               <br></br>
               {comment.votes} Vote
-              {console.log(comment.author)}
               {comment.author === userValue.loggedInUsername.name ? (
                 <button onClick={() => handleDeleteComment(comment.comment_id)}>
                   Delete

@@ -4,34 +4,25 @@ import { useParams } from "react-router-dom";
 import { Comments } from "./comments";
 import { Link } from "react-router-dom";
 
-export const SingleReview = ({loggedInUsername}) => {
+export const SingleReview = ({ loggedInUsername }) => {
   const [singleReview, setSingleReview] = useState({});
-  const { review_id } = useParams();
-
   const [votes, setVotes] = useState(singleReview.votes);
   const [isClicked, setIsClicked] = useState(false);
   const [message, setMessage] = useState("");
   const [loading, setLoading] = useState(true);
   const [err, setErr] = useState(false);
+  const { review_id } = useParams();
+  
   useEffect(() => {
     getSingleReview(review_id).then((review) => {
       setSingleReview(review);
       setVotes(review.votes);
       setLoading(false);
+    }).catch((error) => {
+      setErr(error);
     });
   }, [review_id]);
 
-  if (loading) {
-    return (
-      <section>
-        <h2>Loading... </h2>
-        <img
-          src="https://media0.giphy.com/media/3oEjI6SIIHBdRxXI40/giphy.gif?cid=ecf05e4747e7sqmacwz8lz2ms1i1icw1hv2744tybd05g959&rid=giphy.gif&ct=g"
-          alt="loading"
-        />
-      </section>
-    );
-  }
   const handleClick = () => {
     setIsClicked(!isClicked);
     let voteChange = 1;
@@ -40,22 +31,42 @@ export const SingleReview = ({loggedInUsername}) => {
       setMessage("");
       voteChange = -1;
     }
-
+    
     setVotes((currentVotes) => {
       let upvote = currentVotes + voteChange;
       return upvote;
+    }).catch((error) => {
+      setErr(error);
     });
-
+    
     patchReviewVote(review_id, voteChange)
-      .then(() => {
-        setErr(false);
-      })
-      .catch(() => {
-        setErr(true);
+    .then(() => {
+      setErr(false);
+    })
+    .catch((error) => {
+        setErr(error);
       });
-  };
-  return (
-    <main >
+    };
+    if (loading) {
+      return (
+        <section>
+          <h2>Loading... </h2>
+          <img
+            src="https://media0.giphy.com/media/3oEjI6SIIHBdRxXI40/giphy.gif?cid=ecf05e4747e7sqmacwz8lz2ms1i1icw1hv2744tybd05g959&rid=giphy.gif&ct=g"
+            alt="loading"
+          />
+        </section>
+      );
+    }
+    if(err){
+      return (
+        <section>
+          <p>Oops, something went wrong ☹</p>
+        </section>
+      )
+    }
+    return (
+    <main>
       <section className="item">
         <h4>
           <Link to="/">Go Home</Link>
@@ -82,7 +93,10 @@ export const SingleReview = ({loggedInUsername}) => {
         <br></br>
         {singleReview.comment_count} Comments
       </section>
-      <Comments singleReview={singleReview} loggedInUsername={loggedInUsername} />
+      <Comments
+        singleReview={singleReview}
+        loggedInUsername={loggedInUsername}
+      />
     </main>
   );
 };

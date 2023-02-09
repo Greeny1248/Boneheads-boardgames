@@ -6,16 +6,17 @@ const instance = axios.create({
 
 export const getReviews = (date, comments, votes) => {
   return instance
-  .get(`/reviews`,{
-    params: {
-      date:date,
-      comments:comments,
-      votes:votes, 
-      order:"asc"
-    }
-  }).then((res) => {
-    return res.data.reviews;
-  });
+    .get(`/reviews`, {
+      params: {
+        date: date,
+        comments: comments,
+        votes: votes,
+        order: "asc",
+      },
+    })
+    .then((res) => {
+      return res.data.reviews;
+    });
 };
 
 export const getQueriedReviews = (sortByQuery) => {
