@@ -73,27 +73,25 @@ export const Reviews = () => {
 
   return (
     <section>
-      <h2>{sortByQuery} </h2>
       <section>
-        <label htmlFor="category">Category Filter:</label>
         <button onClick={() => setChosenCategory("hidden-roles")}>
-          hidden-roles
+          Hidden-roles
         </button>
         <button onClick={() => setChosenCategory("dexterity")}>
-          dexterity
+          Dexterity
         </button>
         <button onClick={() => setChosenCategory("strategy")}>strategy</button>
         <button onClick={() => setChosenCategory("deck-building")}>
-          deck-building
+          Deck-building
         </button>
         <button onClick={() => setChosenCategory("engine-building")}>
-          engine-building
+          Engine-building
         </button>
         <button onClick={() => setChosenCategory("push-your-luck")}>
-          push-your-luck
+          Push-your-luck
         </button>
         <button onClick={() => setChosenCategory("roll-and-write")}>
-          roll-and-write
+          Roll-and-write
         </button>
         <Link to="/">
           <button

@@ -7,7 +7,6 @@ const AddComment = ({ setComments, review_id }) => {
   const handleSubmit = (event) => {
     event.preventDefault();
     postComment(review_id, newComment).then((commentFromApi) => {
-      console.log(commentFromApi);
       setComments((currentComments) => {
         return [commentFromApi, ...currentComments];
       });

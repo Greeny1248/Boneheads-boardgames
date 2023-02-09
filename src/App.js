@@ -28,7 +28,6 @@ function App() {
           <Route path="/reviews/:review_id" element={<SingleReview />}></Route>
         </Routes>
       </div>
-    
     </div>
   );
 }
