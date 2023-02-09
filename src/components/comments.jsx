@@ -35,7 +35,7 @@ export const Comments = () => {
       })
       .catch((error) => {
         console.log(error);
-        setErr(error);
+        setErr("Error deleting comment");
         setLoading(false);
       });
   };
@@ -63,7 +63,7 @@ export const Comments = () => {
   if (err) {
     return (
       <section>
-        <p>Oops, something went wrong ☹</p>
+        <p>Oops, something went wrong ☹... {err}</p>
       </section>
     );
   }
@@ -83,7 +83,7 @@ export const Comments = () => {
               <br></br>
               {comment.votes} Vote
               {comment.author === userValue.loggedInUsername.name ? (
-                <button onClick={() => handleDeleteComment(comment.comment_id)}>
+                <button onClick={() => handleDeleteComment(comment.comment_id) }>
                   Delete
                 </button>
               ) : null}
