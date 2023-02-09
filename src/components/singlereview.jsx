@@ -4,7 +4,7 @@ import { useParams } from "react-router-dom";
 import { Comments } from "./comments";
 import { Link } from "react-router-dom";
 
-export const SingleReview = () => {
+export const SingleReview = ({loggedInUsername}) => {
   const [singleReview, setSingleReview] = useState({});
   const { review_id } = useParams();
 
@@ -55,8 +55,8 @@ export const SingleReview = () => {
       });
   };
   return (
-    <main>
-      <section className="listItem">
+    <main >
+      <section className="item">
         <h4>
           <Link to="/">Go Home</Link>
         </h4>
@@ -82,7 +82,7 @@ export const SingleReview = () => {
         <br></br>
         {singleReview.comment_count} Comments
       </section>
-      <Comments singleReview={singleReview} />
+      <Comments singleReview={singleReview} loggedInUsername={loggedInUsername} />
     </main>
   );
 };

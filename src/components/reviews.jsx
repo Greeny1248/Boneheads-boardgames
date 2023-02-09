@@ -70,7 +70,6 @@ export const Reviews = () => {
       </section>
     );
   }
-
   return (
     <section>
       <section>
