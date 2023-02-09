@@ -2,13 +2,21 @@ import { useParams } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { getCommentsByReviewId, deleteComment } from "../api";
 import AddComment from "./addcomment";
+import { UserContext } from "../contexts/userContext";
+import { useContext } from "react";
+
 
 export const Comments = () => {
   const [comments, setComments] = useState([]);
   const [loading, setLoading] = useState(false);
-  // const [loggedInUsername, setLoggedInUserName]= useState("")
+  
+  
+  const userValue = useContext(UserContext);
+  console.log(userValue.loggedInUsername.name)
   const { review_id } = useParams();
-  let loggedInUsername = "tickle122"
+
+  
+
 
   useEffect(() => {
     getCommentsByReviewId(review_id)
@@ -63,7 +71,8 @@ export const Comments = () => {
               {comment.body}
               <br></br>
               {comment.votes} Vote
-              {comment.username === loggedInUsername ? (
+              {console.log(comment.author)}
+              {comment.author === userValue.loggedInUsername.name ? (
                 <button onClick={() => handleDeleteComment(comment.comment_id)}>
                   Delete
                 </button>

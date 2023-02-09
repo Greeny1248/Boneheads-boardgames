@@ -4,8 +4,16 @@ const instance = axios.create({
   baseURL: "https://backend-boardgame-server.onrender.com/api",
 });
 
-export const getReviews = () => {
-  return instance.get(`/reviews`).then((res) => {
+export const getReviews = (date, comments, votes) => {
+  return instance
+  .get(`/reviews`,{
+    params: {
+      date:date,
+      comments:comments,
+      votes:votes, 
+      order:"asc"
+    }
+  }).then((res) => {
     return res.data.reviews;
   });
 };
