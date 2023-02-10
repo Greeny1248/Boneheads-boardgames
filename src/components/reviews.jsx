@@ -10,7 +10,7 @@ export const Reviews = () => {
   const [sortDirection, setSortDirection] = useState("asc");
   const [err, setErr] = useState(false);
   let [searchParams, setSearchParams] = useSearchParams();
-  
+
   const sortByQuery = searchParams.get("category_name");
   const setChosenCategory = (category) => {
     const newParams = new URLSearchParams(searchParams);

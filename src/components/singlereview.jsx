@@ -2,7 +2,6 @@ import { getSingleReview, patchReviewVote } from "../api";
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { Comments } from "./comments";
-import { Link } from "react-router-dom";
 
 export const SingleReview = ({ loggedInUsername }) => {
   const [singleReview, setSingleReview] = useState({});
@@ -12,15 +11,17 @@ export const SingleReview = ({ loggedInUsername }) => {
   const [loading, setLoading] = useState(true);
   const [err, setErr] = useState(false);
   const { review_id } = useParams();
-  
+
   useEffect(() => {
-    getSingleReview(review_id).then((review) => {
-      setSingleReview(review);
-      setVotes(review.votes);
-      setLoading(false);
-    }).catch((error) => {
-      setErr(error);
-    });
+    getSingleReview(review_id)
+      .then((review) => {
+        setSingleReview(review);
+        setVotes(review.votes);
+        setLoading(false);
+      })
+      .catch((error) => {
+        setErr(error);
+      });
   }, [review_id]);
 
   const handleClick = () => {
@@ -31,41 +32,41 @@ export const SingleReview = ({ loggedInUsername }) => {
       setMessage("");
       voteChange = -1;
     }
-    
+
     setVotes((currentVotes) => {
       let upvote = currentVotes + voteChange;
       return upvote;
     }).catch((error) => {
       setErr(error);
     });
-    
+
     patchReviewVote(review_id, voteChange)
-    .then(() => {
-      setErr(false);
-    })
-    .catch((error) => {
+      .then(() => {
+        setErr(false);
+      })
+      .catch((error) => {
         setErr(error);
       });
-    };
-    if (loading) {
-      return (
-        <section>
-          <h2>Loading... </h2>
-          <img
-            src="https://media0.giphy.com/media/3oEjI6SIIHBdRxXI40/giphy.gif?cid=ecf05e4747e7sqmacwz8lz2ms1i1icw1hv2744tybd05g959&rid=giphy.gif&ct=g"
-            alt="loading"
-          />
-        </section>
-      );
-    }
-    if(err){
-      return (
-        <section>
-          <p>Oops, something went wrong ☹</p>
-        </section>
-      )
-    }
+  };
+  if (loading) {
     return (
+      <section>
+        <h2>Loading... </h2>
+        <img
+          src="https://media0.giphy.com/media/3oEjI6SIIHBdRxXI40/giphy.gif?cid=ecf05e4747e7sqmacwz8lz2ms1i1icw1hv2744tybd05g959&rid=giphy.gif&ct=g"
+          alt="loading"
+        />
+      </section>
+    );
+  }
+  if (err) {
+    return (
+      <section>
+        <p>Oops, something went wrong ☹</p>
+      </section>
+    );
+  }
+  return (
     <main>
       <section className="item">
         <h3>{singleReview.title}</h3>
