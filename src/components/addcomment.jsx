@@ -12,6 +12,7 @@ const AddComment = ({ setComments, review_id }) => {
         setComments((currentComments) => {
           return [commentFromApi, ...currentComments];
         });
+        setNewComment("")
       })
       .catch((error) => {
         console.log(error);
