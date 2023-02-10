@@ -9,9 +9,11 @@ import "./App.css";
 import "./darkMode.css";
 
 function App() {
+
   useContext(UserContext);
   return (
     <div className="App">
+      <div id="particles-js"></div>
       <Nav />
       <Header />
       <Routes>
