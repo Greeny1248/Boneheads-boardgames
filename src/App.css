@@ -1,28 +1,28 @@
 .App {
   text-align: center;
-  border-left: solid white 30px;
-  border-right: solid white 30px;
+  border-left: solid white 20px;
+  border-right: solid white 20px;
 }
 .nav {
   display: flex;
   flex-wrap: nowrap;
-  margin-left: -3%;
-  margin-right: -3%;
+  margin-left: -10%;
+  margin-right: -10%;
   background-color: #2f3035;
   align-content: flex-end;
   padding: 10px;
-  min-height: 30px;
+  min-height: 50px;
   max-height: 1000px;
   font-size: 10px;
   margin-bottom: 2%;
 }
 #userimg {
-  border-radius: 50%;
-  padding: 1%;
-  max-width: 30%;
-  min-width: none;
-  height: 40px;
+  border-radius: 10%;
+padding-left: 8%;  max-width: 30%;
+  min-width: 20px;
+  height: 30px;
   width: auto;
+
 }
 #username {
   border: none;
@@ -31,22 +31,42 @@
   text-align: center;
   text-decoration: none;
   display: inline-block;
-  font-size: 0.8rem;
+  font-size: 0.6rem;
   margin: 2px -25px;
   cursor: pointer;
   border-radius: 5px;
-  margin-right: 20px;
+  margin-right: 2px;
+  
 }
 
 .homeButton {
-  height: 60px;
+  max-height: 60px;
   width: auto;
   position: absolute;
-  right: 160px;
+  right: 10px;
+  min-height: 20px;
+}
+.themeButton {
+  font-size: 0.8em;
+  padding: 0.8em;
+}
+
+@media screen and (min-width: 480px) {
+  .themeButton {
+    font-size: 1.5em;
+    padding: 1.5em;
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .themeButton {
+    font-size: 2em;
+    padding: 1.5em;
+  }
 }
 .themeButton {
   position: absolute;
-  right: 10px;
+  right: 80px;
   top: 10px;
   height: auto;
   font-size: 0.8rem;
