@@ -24,9 +24,14 @@ const Nav = () => {
         alt={userValue.loggedInUsername.name}
       />
       <p id="username">{userValue.loggedInUsername.name} is logged in</p>
-      <button className="navlink">
-        <Link to="/">Home</Link>
-      </button>
+      <Link to="/">
+        <img
+          src="https://cdn-icons-png.flaticon.com/512/25/25694.png"
+          alt="go home"
+          className="homeButton"
+        />
+      </Link>
+
       <button className="themeButton" onClick={toggleTheme}>
         Toggle Theme
       </button>

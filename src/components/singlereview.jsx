@@ -68,9 +68,6 @@ export const SingleReview = ({ loggedInUsername }) => {
     return (
     <main>
       <section className="item">
-        <h4>
-          <Link to="/">Go Home</Link>
-        </h4>
         <h3>{singleReview.title}</h3>
         <br></br>
         <img src={singleReview.review_img_url} alt={`${singleReview.title}`} />
