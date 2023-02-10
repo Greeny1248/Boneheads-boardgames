@@ -178,15 +178,18 @@ img {
   }
 }
 .errorText{
+  display: flex;
+  flex-direction: column;
   background-color: #251c70;
   box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
   border-radius: 5px;
   padding: 2%;
   margin: 2%;
   height: 500px;
+  align-items: center;
 }
 .errorteapot{
-  height: 90%;
+  height: 80%;
   width: auto;
 }
 

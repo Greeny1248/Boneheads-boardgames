@@ -34,7 +34,6 @@ const Nav = () => {
           className="homeButton"
         />
       </Link>
-
     </nav>
   );
 };

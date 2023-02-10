@@ -29,6 +29,14 @@ const AddComment = ({ setComments, review_id }) => {
           alt="errorteapot"
           className="errorteapot"
         />
+        <iframe
+          title="hello4"
+          width="110"
+          height="200"
+          src="https://www.myinstants.com/instant/lionel-richie-hello-is-it-me/embed/"
+          frameborder="0"
+          scrolling="no"
+        ></iframe>
       </section>
     );
   }

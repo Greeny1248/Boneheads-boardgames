@@ -92,6 +92,14 @@ export const Reviews = () => {
           src="https://media0.giphy.com/media/3oEjI6SIIHBdRxXI40/giphy.gif?cid=ecf05e4747e7sqmacwz8lz2ms1i1icw1hv2744tybd05g959&rid=giphy.gif&ct=g"
           alt="loading"
         />
+        <iframe
+          title="hello2"
+          width="110"
+          height="200"
+          src="https://www.myinstants.com/instant/lionel-richie-hello-is-it-me/embed/"
+          frameborder="0"
+          scrolling="no"
+        ></iframe>
       </section>
     );
   }

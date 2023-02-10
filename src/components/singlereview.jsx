@@ -66,6 +66,14 @@ export const SingleReview = ({ loggedInUsername }) => {
           alt="errorteapot"
           className="errorteapot"
         />
+        <iframe
+          title="hello"
+          width="110"
+          height="200"
+          src="https://www.myinstants.com/instant/lionel-richie-hello-is-it-me/embed/"
+          frameborder="0"
+          scrolling="no"
+        ></iframe>
       </section>
     );
   }
