@@ -40,7 +40,7 @@ export const Comments = () => {
       });
   };
 
-  if (loading) {
+  if (loading && !err) {
     return (
       <section>
         <h2>Loading... </h2>

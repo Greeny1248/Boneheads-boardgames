@@ -36,19 +36,20 @@ export const SingleReview = ({ loggedInUsername }) => {
     setVotes((currentVotes) => {
       let upvote = currentVotes + voteChange;
       return upvote;
-    }).catch((error) => {
-      setErr(error);
+    }).catch((err) => {
+      console.log(err)
+      setErr(err);
     });
 
     patchReviewVote(review_id, voteChange)
       .then(() => {
         setErr(false);
       })
-      .catch((error) => {
-        setErr(error);
+      .catch((err) => {
+        setErr(err);
       });
   };
-  if (loading) {
+  if (loading && !err) {
     return (
       <section>
         <h2>Loading... </h2>

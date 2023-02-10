@@ -24,10 +24,10 @@ export const Reviews = () => {
         .then((reviews) => {
           setReviews(reviews);
         })
-        .catch((error) => {
-          console.log(error);
-          setErr(error);
+        .catch((err) => {
           setLoading(false);
+          console.log(err);
+          setErr(err);
         });
     }
   }, [sortByQuery, setReviews]);
@@ -38,10 +38,11 @@ export const Reviews = () => {
         setReviews(reviews);
         setLoading(false);
       })
-      .catch((error) => {
-        console.log(error);
-        setErr(error);
+      .catch((err) => {
         setLoading(false);
+        console.log(err);
+        setErr(err);
+        console.log(err)
       });
   }, []);
 
@@ -71,9 +72,17 @@ export const Reviews = () => {
     }
   };
 
-  if (loading) {
+  if (err) {
     return (
       <section>
+        <p>Oops, something went wrong ☹</p>
+      </section>
+    );
+  }
+  if (loading && !err) {
+    return (
+      <section>
+
         <h2>Loading... </h2>
         <img
           src="https://media0.giphy.com/media/3oEjI6SIIHBdRxXI40/giphy.gif?cid=ecf05e4747e7sqmacwz8lz2ms1i1icw1hv2744tybd05g959&rid=giphy.gif&ct=g"
@@ -83,13 +92,6 @@ export const Reviews = () => {
     );
   }
 
-  if (err) {
-    return (
-      <section>
-        <p>Oops, something went wrong ☹</p>
-      </section>
-    );
-  }
   return (
     <section>
       <section>
