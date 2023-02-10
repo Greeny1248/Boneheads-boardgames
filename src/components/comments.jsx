@@ -83,7 +83,7 @@ export const Comments = () => {
               <br></br>
               {comment.votes} Vote
               {comment.author === userValue.loggedInUsername.name ? (
-                <button onClick={() => handleDeleteComment(comment.comment_id) }>
+                <button onClick={() => handleDeleteComment(comment.comment_id)}>
                   Delete
                 </button>
               ) : null}
