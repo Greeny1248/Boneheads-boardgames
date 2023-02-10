@@ -42,7 +42,7 @@ export const Reviews = () => {
         setLoading(false);
         console.log(err);
         setErr(err);
-        console.log(err)
+        console.log(err);
       });
   }, []);
 
@@ -74,15 +74,19 @@ export const Reviews = () => {
 
   if (err) {
     return (
-      <section>
+      <section className="errorText">
         <p>Oops, something went wrong ☹</p>
+        <img
+          src="https://pbs.twimg.com/media/CQuQ_IpWoAE0eM9.jpg"
+          alt="errorteapot"
+          className="errorteapot"
+        />
       </section>
     );
   }
   if (loading && !err) {
     return (
       <section>
-
         <h2>Loading... </h2>
         <img
           src="https://media0.giphy.com/media/3oEjI6SIIHBdRxXI40/giphy.gif?cid=ecf05e4747e7sqmacwz8lz2ms1i1icw1hv2744tybd05g959&rid=giphy.gif&ct=g"

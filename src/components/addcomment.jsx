@@ -12,7 +12,7 @@ const AddComment = ({ setComments, review_id }) => {
         setComments((currentComments) => {
           return [commentFromApi, ...currentComments];
         });
-        setNewComment("")
+        setNewComment("");
       })
       .catch((error) => {
         console.log(error);
@@ -22,8 +22,13 @@ const AddComment = ({ setComments, review_id }) => {
 
   if (err) {
     return (
-      <section>
+      <section className="errorText">
         <p>Oops, something went wrong ☹</p>
+        <img
+          src="https://pbs.twimg.com/media/CQuQ_IpWoAE0eM9.jpg"
+          alt="errorteapot"
+          className="errorteapot"
+        />
       </section>
     );
   }

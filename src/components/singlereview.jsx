@@ -36,7 +36,7 @@ export const SingleReview = ({ loggedInUsername }) => {
     setVotes((currentVotes) => {
       let upvote = currentVotes + voteChange;
       return upvote;
-    })
+    });
 
     patchReviewVote(review_id, voteChange)
       .then(() => {
@@ -59,8 +59,13 @@ export const SingleReview = ({ loggedInUsername }) => {
   }
   if (err) {
     return (
-      <section>
+      <section className="errorText">
         <p>Oops, something went wrong ☹</p>
+        <img
+          src="https://pbs.twimg.com/media/CQuQ_IpWoAE0eM9.jpg"
+          alt="errorteapot"
+          className="errorteapot"
+        />
       </section>
     );
   }

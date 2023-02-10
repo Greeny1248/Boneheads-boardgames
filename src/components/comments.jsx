@@ -62,8 +62,13 @@ export const Comments = () => {
 
   if (err) {
     return (
-      <section>
+      <section className="errorText">
         <p>Oops, something went wrong ☹... {err}</p>
+        <img
+          src="https://pbs.twimg.com/media/CQuQ_IpWoAE0eM9.jpg"
+          alt="errorteapot"
+          className="errorteapot"
+        />
       </section>
     );
   }
