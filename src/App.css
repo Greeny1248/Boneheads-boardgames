@@ -129,15 +129,15 @@ margin-right: 10%;
 }
 @media screen and (min-width: 480px) {
   .item {
-    font-size: 1.5em;
-    padding: 1.5em;
+    font-size: 1rem;
+    padding: 1rem;
   }
 }
 
 @media screen and (min-width: 768px) {
   .item {
-    font-size: 2em;
-    padding: 1.5em;
+    font-size: 1.2rem;
+    padding: 1.2rem;
   }
 }
 
@@ -155,7 +155,7 @@ img {
   background-color: rgb(185, 178, 169);  
   border-radius: 5px;
   list-style: none;
-  font-size: 0.7rem;
+  font-size: 0.8rem;
   padding: 2%;
   margin: 2%;
   margin-left: 10%;
@@ -165,18 +165,19 @@ img {
 }
 
 @media screen and (min-width: 480px) {
-  .commentli {
-    font-size: 1.2em;
-    padding: 1.2em;
+  .item {
+    font-size: 1rem;
+    padding: 1rem;
   }
 }
 
 @media screen and (min-width: 768px) {
-  .commentli {
-    font-size: 1.6em;
-    padding: 1.3em;
+  .item {
+    font-size: 1.2rem;
+    padding: 1.2rem;
   }
 }
+
 .name {
   width: 50%;
   border-radius: 5px;

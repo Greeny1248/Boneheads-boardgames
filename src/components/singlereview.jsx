@@ -36,10 +36,7 @@ export const SingleReview = ({ loggedInUsername }) => {
     setVotes((currentVotes) => {
       let upvote = currentVotes + voteChange;
       return upvote;
-    }).catch((err) => {
-      console.log(err)
-      setErr(err);
-    });
+    })
 
     patchReviewVote(review_id, voteChange)
       .then(() => {
