@@ -1,70 +1,36 @@
-# Getting Started with Create React App
+# Boneheads Boardgames
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Frontend software for the full stack application I created in conjunction with Northcoders' award-winning bootcamp, Boneheads BoardGames, this app contains a variety of features, such as the ability to view game reviews; reading individual reviews and comments; and providing the ability to post and delete ones own comments. Reviews can be sorted and filtered using the bar below the website's logo. Additionally, this app has a number of other features, some of which are listed on the website below...
 
-## Available Scripts
+### https://boneheads-boardgames.netlify.app/
 
-In the project directory, you can run:
+Running the app locally & cloning the repo
+Open terminal and cd to the directory you'd like to clone the repo to. Paste the following command into the terminal:
 
-### `npm start`
+```
+$ git clone https://github.com/Greeny1248/be-boneheads-boardgames
+```
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+## Installing dependencies
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+Once the repo has been successfully cloned, install all dependencies using:
 
-### `npm test`
+```
+$ npm install
+```
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Starting the local server
 
-### `npm run build`
+Once all dependencies have been installed, the server can be started using:
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+```
+$ npm start
+```
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+## The locally hosted website should open automatically.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+Alternatively view the:
 
-### `npm run eject`
+Backend Repo: https://github.com/Greeny1248/be-boneheads-boardgames
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+or the API: https://backend-boardgame-server.onrender.com/api
